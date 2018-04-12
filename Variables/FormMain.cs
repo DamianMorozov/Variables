@@ -10,15 +10,13 @@ namespace Variables
             InitializeComponent();
         }
 
-        // Инициализация размерных переменных
+        // Строки
         private void buttonStr_Click(object sender, EventArgs e)
         {
             unsafe
             {
-                string str1;
-
                 // Занесение значений в переменные
-                str1 = "Что нибудь";
+                const string str1 = "Что нибудь";
 
                 // Использование переменных
                 dataGridView.Rows.Add();
@@ -27,8 +25,7 @@ namespace Variables
                 dataGridView.Rows[0].Cells[2].Value = "str1 = " + str1;
                 dataGridView.Rows[0].Cells[3].Value = Convert.ToString(str1.Length);
 
-                string str2;
-                str2 = "Вот этот текст будет больше";
+                var str2 = "Вот этот текст будет больше";
                 dataGridView.Rows.Add();
                 dataGridView.Rows[1].Cells[0].Value = "System.String";
                 dataGridView.Rows[1].Cells[1].Value = "string";
@@ -50,13 +47,16 @@ namespace Variables
 
         }
 
+        // Объекты классов
         private void buttonObject_Click(object sender, EventArgs e)
         {
-            var objA1 = new ClassObjectA1();
-            objA1.Make();
-
+            // Очистить лог
             richTextBox.Clear();
-            foreach (var logStr in objA1.LogA1)
+
+            var objA1 = new ClassObjectA1();
+            richTextBox.AppendText("var objA1 = new ClassObjectA1();" + Environment.NewLine + Environment.NewLine);
+
+            foreach (var logStr in objA1.Log)
             {
                 if (!string.IsNullOrEmpty(logStr))
                 {
@@ -64,5 +64,55 @@ namespace Variables
                 }
             }
         }
+
+        // Объект класса с методом virtual
+        private void buttonObjectVirtual_Click(object sender, EventArgs e)
+        {
+            // Очистить лог
+            richTextBox.Clear();
+
+            var objB = new ClassObjectB();
+            richTextBox.AppendText("var objB = new ClassObjectB();" + Environment.NewLine + Environment.NewLine);
+
+            foreach (var logStr in objB.Log)
+            {
+                if (!string.IsNullOrEmpty(logStr))
+                {
+                    richTextBox.AppendText(logStr + Environment.NewLine);
+                }
+            }
+        }
+
+        // Объект класса с методом override
+        private void buttonObjectOverride_Click(object sender, EventArgs e)
+        {
+            // Очистить лог
+            richTextBox.Clear();
+
+            var objB1 = new ClassObjectB1();
+            richTextBox.AppendText("var objB1 = new ClassObjectB1();" + Environment.NewLine + Environment.NewLine);
+
+            foreach (var logStr in objB1.Log)
+            {
+                if (!string.IsNullOrEmpty(logStr))
+                {
+                    richTextBox.AppendText(logStr + Environment.NewLine);
+                }
+            }
+
+            richTextBox.AppendText(Environment.NewLine + Environment.NewLine);
+
+            var objB2 = new ClassObjectB2();
+            richTextBox.AppendText("var objB2 = new ClassObjectB2();" + Environment.NewLine + Environment.NewLine);
+
+            foreach (var logStr in objB2.Log)
+            {
+                if (!string.IsNullOrEmpty(logStr))
+                {
+                    richTextBox.AppendText(logStr + Environment.NewLine);
+                }
+            }
+        }
+
     }
 }

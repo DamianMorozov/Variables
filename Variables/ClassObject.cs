@@ -9,11 +9,26 @@ namespace Variables
         public ClassObjectA()
         {
             Log.Add(@"ClassObjectA - Constructor()");
+            Make();
         }
 
         public void Make()
         {
             Log.Add(@"ClassObjectA - Make()");
+        }
+    }
+
+    public class ClassObjectA1 : ClassObjectA
+    {
+        public ClassObjectA1()
+        {
+            Log.Add(@"- ClassObjectA1 - Constructor()");
+            Make();
+        }
+
+        public void Make()
+        {
+            Log.Add(@"- ClassObjectA1 - Make()");
         }
     }
 
@@ -24,22 +39,36 @@ namespace Variables
         public ClassObjectB()
         {
             Log.Add(@"ClassObjectB - Constructor()");
+            Make();
+        }
+
+        public virtual void Make()
+        {
+            Log.Add(@"ClassObjectB - virtual Make()");
         }
     }
 
-    public class ClassObjectA1 : ClassObjectA
+    public class ClassObjectB1 : ClassObjectB
     {
-        public Collection<string> LogA1 { get; set; } = new Collection<string>();
-
-        public ClassObjectA1()
+        public ClassObjectB1()
         {
-            LogA1 = Log;
-            Log.Add(@"ClassObjectA1 - Constructor()");
-        }
-
-        public void Make()
-        {
-            Log.Add(@"ClassObjectA1 - Make()");
+            Log.Add(@"- ClassObjectB1 - Constructor()");
+            Make();
         }
     }
+
+    public class ClassObjectB2 : ClassObjectB
+    {
+        public ClassObjectB2()
+        {
+            Log.Add(@"- ClassObjectB1 - Constructor()");
+            Make();
+        }
+
+        public override void Make()
+        {
+            Log.Add(@"- ClassObjectB1 - override Make()");
+        }
+    }
+
 }
